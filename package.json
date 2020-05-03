@@ -5,11 +5,14 @@
   "main": "index.js",
   "scripts": {
     "prettier:check": "prettier --check './**/*.{js,json,css}' && echo \"✅ Prettier validated\"",
-    "prettier:write": "prettier --write './**/*.{js,json,css}'"
+    "prettier:write": "prettier --write './**/*.{js,json,css}'",
+    "lint": "eslint './**/*.js'",
+    "lint:fix": "eslint './**/*.js' --fix"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "eslint": "^6.8.0",
     "prettier": "2.0.5"
   }
 }
