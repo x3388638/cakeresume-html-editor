@@ -1,9 +1,10 @@
 {
   "name": "cakeresume-html-editor",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "webpack --progress",
     "prettier:check": "prettier --check './**/*.{js,json,css}' && echo \"✅ Prettier validated\"",
     "prettier:write": "prettier --write './**/*.{js,json,css}'",
     "lint": "eslint './**/*.js'",
@@ -12,10 +13,17 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "css-loader": "^3.5.3",
     "eslint": "^6.8.0",
+    "file-loader": "^6.0.0",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.2",
-    "prettier": "2.0.5"
+    "monaco-editor-webpack-plugin": "^1.9.0",
+    "prettier": "2.0.5",
+    "style-loader": "^1.2.1",
+    "terser-webpack-plugin": "^3.0.0",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
   },
   "lint-staged": {
     "*.{js,json,css}": [
@@ -29,5 +37,8 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
+  },
+  "dependencies": {
+    "monaco-editor": "^0.20.0"
   }
 }
