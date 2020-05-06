@@ -1,0 +1,69 @@
+.cakeresume-html-editor {
+  display: flex;
+  width: 700px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  right: 0;
+  transform: translateX(720px);
+  z-index: 99999;
+  box-shadow: -2px 0px 5px 0px #101518;
+  transition: transform 0.5s cubic-bezier(0.2, 1, 0.3, 1) 0s;
+
+  &.open {
+    transform: translateX(0);
+  }
+
+  .tools {
+    display: flex;
+    flex-direction: column;
+    width: 50px;
+    background: #1e1e1e;
+    border-right: 1px solid #5b636a;
+
+    .toolBtn {
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: #5b636a;
+      cursor: pointer;
+      transition: all 0.2s;
+
+      &:hover {
+        color: #c7cdd2;
+      }
+    }
+  }
+
+  .editorContainer {
+    flex: 1 0 0;
+  }
+}
+
+.toolbar-btn {
+  &.btn-openEditor {
+    background: #ffd333;
+    color: #232a31;
+
+    &:hover {
+      background: #ff8b12;
+      color: #1d2228;
+    }
+  }
+}
+
+.ui-draggable.editorOpen {
+  &::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    bottom: -15px;
+    left: -15px;
+    border: 1px solid #ffd333;
+    border-radius: 3px;
+  }
+}
