@@ -21,8 +21,7 @@ self.MonacoEnvironment = {
  * editor elements
  * ==================
  */
-const editorStyle = document.createElement('style')
-editorStyle.innerHTML = `
+const $editorStyle = $('<style>').html(`
   .cakeresume-html-editor {
     display: flex;
     visibility: hidden;
@@ -46,23 +45,16 @@ editorStyle.innerHTML = `
   .cakeresume-html-editor .editorContainer {
     flex: 1 0 0;
   }
-`
+`)
 
-const cakeresumeHtmlEditor = document.createElement('div')
-cakeresumeHtmlEditor.classList.add('cakeresume-html-editor')
+const $cakeresumeHtmlEditor = $('<div>').addClass('cakeresume-html-editor')
+const $tools = $('<div>').addClass('tools')
+const $editorContainer = $('<div>').addClass('editorContainer')
 
-const tools = document.createElement('div')
-tools.classList.add('tools')
+$cakeresumeHtmlEditor.append($tools).append($editorContainer)
+$('body').append($editorStyle).append($cakeresumeHtmlEditor)
 
-const editorContainer = document.createElement('div')
-editorContainer.classList.add('editorContainer')
-
-cakeresumeHtmlEditor.appendChild(tools)
-cakeresumeHtmlEditor.appendChild(editorContainer)
-document.body.appendChild(editorStyle)
-document.body.appendChild(cakeresumeHtmlEditor)
-
-_EDITOR = monaco.editor.create(editorContainer, {
+_EDITOR = monaco.editor.create($editorContainer[0], {
   value: ['<div>', '\thello world', '</div>'].join('\n'),
   language: 'html',
   theme: 'vs-dark',
@@ -72,15 +64,12 @@ _EDITOR = monaco.editor.create(editorContainer, {
   }
 })
 
-console.log(_EDITOR)
-
 /**
  * ==================
  * entry button
  * ==================
  */
-const entryBtnStyle = document.createElement('style')
-entryBtnStyle.innerHTML = `
+const $entryBtnStyle = $('<style>').html(`
   .toolbar-btn.btn-openEditor {
     background: #FFD333;
     color: #232A31;
@@ -90,9 +79,9 @@ entryBtnStyle.innerHTML = `
     background: #FF8B12;
     color: #1D2228;
   }
-`
+`)
 
-document.body.appendChild(entryBtnStyle)
+$('body').append($entryBtnStyle)
 
 $('.contentarea').on(
   'click',
@@ -110,7 +99,7 @@ $('.contentarea').on(
         plugins: [parserHtml]
       })
     )
-    cakeresumeHtmlEditor.classList.add('open')
+    $cakeresumeHtmlEditor.addClass('open')
   }
 )
 
