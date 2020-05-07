@@ -40,7 +40,11 @@ const $toolBtnClose = createToolBtn({
 })
 const $toolBtnToggleCollapse = createToolBtn({
   className: 'toolBtnToggleCollapse',
-  faClass: 'fa fa-angle-right'
+  faClass: 'fas fa-chevron-right'
+})
+const $toolBtnSync = createToolBtn({
+  className: 'toolBtnSync',
+  faClass: 'fas fa-sync-alt'
 })
 const $toolBtnGitHub = createToolBtn({
   className: 'toolBtnGitHub',
@@ -62,53 +66,8 @@ $contentarea.on(
 )
 
 $toolBtnClose.on('click', handleCloseEditor)
+$toolBtnSync.on('click', handleSyncCode)
 $toolBtnToggleCollapse.on('click', handleToggleEditor)
-
-/**
- * ==================
- * event handler
- * ==================
- */
-function appendEntryBtn() {
-  const $toolbar = $(this).find('.toolbar')
-  if (!$toolbar.find('.btn-openEditor').size()) {
-    const $btn = $(
-      '<div class="toolbar-btn btn-openEditor" title="Open HTML editor"><i class="fas fa-laptop-code"></i></div>'
-    )
-
-    $toolbar.append($btn)
-  }
-}
-
-function handleOpenEditor() {
-  $activeBlock = $(this).parents('.ui-draggable')
-  const html = $activeBlock.find('> .row').html()
-  EDITOR.setValue(
-    prettier.format(html, {
-      semi: false,
-      useTabs: true,
-      singleQuote: true,
-      endOfLine: 'lf',
-      trailingComma: 'none',
-      parser: 'html',
-      plugins: [parserHtml]
-    })
-  )
-
-  $cakeresumeHtmlEditor.removeClass('collapsed').addClass('open')
-
-  clearBlockHighlight()
-  $activeBlock.addClass('editorOpen')
-}
-
-function handleCloseEditor() {
-  $cakeresumeHtmlEditor.removeClass('open')
-  clearBlockHighlight()
-}
-
-function handleToggleEditor() {
-  $cakeresumeHtmlEditor.toggleClass('collapsed')
-}
 
 /**
  * ==================
@@ -130,12 +89,71 @@ function createToolBtn({ className, faClass, link }) {
     .html(`<i class="${faClass}"></i>`)
 }
 
+function setEditorValue(value) {
+  EDITOR.setValue(
+    prettier.format(value, {
+      semi: false,
+      useTabs: true,
+      singleQuote: true,
+      endOfLine: 'lf',
+      trailingComma: 'none',
+      parser: 'html',
+      plugins: [parserHtml]
+    })
+  )
+}
+
+/**
+ * ==================
+ * event handler
+ * ==================
+ */
+function appendEntryBtn() {
+  const $toolbar = $(this).find('.toolbar')
+  if (!$toolbar.find('.btn-openEditor').size()) {
+    const $btn = $(
+      '<div class="toolbar-btn btn-openEditor" title="Open HTML editor"><i class="fas fa-laptop-code"></i></div>'
+    )
+
+    $toolbar.append($btn)
+  }
+}
+
+function handleOpenEditor() {
+  $activeBlock = $(this).parents('.ui-draggable')
+  const html = $activeBlock.find('> .row').html()
+  setEditorValue(html)
+
+  $cakeresumeHtmlEditor.removeClass('collapsed').addClass('open')
+
+  clearBlockHighlight()
+  $activeBlock.addClass('editorOpen')
+}
+
+function handleCloseEditor() {
+  $cakeresumeHtmlEditor.removeClass('open')
+  clearBlockHighlight()
+}
+
+function handleSyncCode() {
+  setEditorValue($activeBlock.find('> .row').html())
+}
+
+function handleToggleEditor() {
+  $cakeresumeHtmlEditor.toggleClass('collapsed')
+}
+
 /**
  * ==================
  * init
  * ==================
  */
-const toolBtns = [$toolBtnClose, $toolBtnToggleCollapse, $toolBtnGitHub]
+const toolBtns = [
+  $toolBtnClose,
+  $toolBtnToggleCollapse,
+  $toolBtnSync,
+  $toolBtnGitHub
+]
 toolBtns.forEach(($btn) => {
   $tools.append($btn)
 })
