@@ -1,18 +1,19 @@
+/**
+ * custom element
+ */
 .cakeresume-html-editor {
   display: flex;
   width: 700px;
-  height: 100vh;
+  height: calc(100vh - 40px);
   position: fixed;
-  top: 0;
+  padding-top: 5px;
+  background: #1e1e1e;
+  top: 40px;
   right: 0;
   transform: translateX(720px);
-  z-index: 99999;
+  z-index: 2147483601;
   box-shadow: -2px 0px 5px 0px #101518;
   transition: transform 0.5s cubic-bezier(0.2, 1, 0.3, 1) 0s;
-
-  &.open {
-    transform: translateX(0);
-  }
 
   .tools {
     display: flex;
@@ -36,10 +37,29 @@
         color: #c7cdd2;
       }
     }
+
+    .toolBtnToggleCollapse {
+      transform: rotate(0);
+      transition: transform 0.5s cubic-bezier(0.2, 1, 0.3, 1) 0s;
+    }
   }
 
   .editorContainer {
     flex: 1 0 0;
+  }
+
+  &.open {
+    transform: translateX(0);
+
+    &.collapsed {
+      transform: translateX(650px);
+
+      .tools {
+        .toolBtnToggleCollapse {
+          transform: rotate(540deg);
+        }
+      }
+    }
   }
 }
 
@@ -66,4 +86,11 @@
     border: 1px solid #ffd333;
     border-radius: 3px;
   }
+}
+
+/**
+ * override
+ */
+.navbar-item {
+  z-index: 2147483602 !important;
 }
