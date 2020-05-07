@@ -2,6 +2,7 @@ import 'monaco-editor/esm/vs/editor/browser/controller/coreCommands.js'
 import 'monaco-editor/esm/vs/editor/contrib/find/findController.js'
 import * as monaco from 'monaco-editor/esm/vs/editor/editor.api.js'
 import 'monaco-editor/esm/vs/basic-languages/html/html.contribution.js'
+import debounce from 'lodash.debounce'
 import './style.css'
 const prettier = require('prettier/standalone')
 const parserHtml = require('prettier/parser-html')
@@ -20,7 +21,8 @@ self.MonacoEnvironment = {
  * variable
  * ==================
  */
-let _EDITOR
+let EDITOR
+let $activeBlock
 
 /**
  * ==================
@@ -28,7 +30,7 @@ let _EDITOR
  * ==================
  */
 const $body = $('body')
-const $contentarea = $('.contentarea')
+const $contentarea = $('#contentarea')
 
 const $cakeresumeHtmlEditor = $('<div>').addClass('cakeresume-html-editor')
 const $tools = $('<div>').addClass('tools')
@@ -52,6 +54,7 @@ const $editorContainer = $('<div>').addClass('editorContainer')
  * event binding
  * ==================
  */
+$contentarea.on('click', '.ui-draggable', appendEntryBtn)
 $contentarea.on(
   'click',
   '.ui-draggable .toolbar .btn-openEditor',
@@ -66,10 +69,21 @@ $toolBtnToggleCollapse.on('click', handleToggleEditor)
  * event handler
  * ==================
  */
+function appendEntryBtn() {
+  const $toolbar = $(this).find('.toolbar')
+  if (!$toolbar.find('.btn-openEditor').size()) {
+    const $btn = $(
+      '<div class="toolbar-btn btn-openEditor" title="Open HTML editor"><i class="fas fa-laptop-code"></i></div>'
+    )
+
+    $toolbar.append($btn)
+  }
+}
+
 function handleOpenEditor() {
-  const $block = $(this).parents('.ui-draggable')
-  const html = $block.html()
-  _EDITOR.setValue(
+  $activeBlock = $(this).parents('.ui-draggable')
+  const html = $activeBlock.find('> .row').html()
+  EDITOR.setValue(
     prettier.format(html, {
       semi: false,
       useTabs: true,
@@ -84,7 +98,7 @@ function handleOpenEditor() {
   $cakeresumeHtmlEditor.removeClass('collapsed').addClass('open')
 
   clearBlockHighlight()
-  $block.addClass('editorOpen')
+  $activeBlock.addClass('editorOpen')
 }
 
 function handleCloseEditor() {
@@ -129,7 +143,7 @@ toolBtns.forEach(($btn) => {
 $cakeresumeHtmlEditor.append($tools).append($editorContainer)
 $body.append($cakeresumeHtmlEditor)
 
-_EDITOR = monaco.editor.create($editorContainer[0], {
+EDITOR = monaco.editor.create($editorContainer[0], {
   value: ['<div>', '\thello world', '</div>'].join('\n'),
   language: 'html',
   theme: 'vs-dark',
@@ -139,10 +153,13 @@ _EDITOR = monaco.editor.create($editorContainer[0], {
   }
 })
 
-$contentarea.find('.ui-draggable .toolbar').each(function () {
-  const $btn = $(
-    '<div class="toolbar-btn btn-openEditor" title="Open HTML editor"><i class="fas fa-laptop-code"></i></div>'
-  )
-
-  $(this).append($btn)
-})
+EDITOR.getModel().onDidChangeContent(
+  debounce((e) => {
+    if (!e.isFlush) {
+      // not set by api
+      const value = EDITOR.getValue()
+      $activeBlock.find('> .row').html(value)
+      $contentarea.data('contenteditor').onChanged()
+    }
+  }, 1000)
+)
