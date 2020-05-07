@@ -32,11 +32,19 @@ const $contentarea = $('.contentarea')
 
 const $cakeresumeHtmlEditor = $('<div>').addClass('cakeresume-html-editor')
 const $tools = $('<div>').addClass('tools')
-const $toolBtnClose = createToolBtn('toolBtnClose', 'times')
-const $toolBtnToggleCollapse = createToolBtn(
-  'toolBtnToggleCollapse',
-  'angle-right'
-)
+const $toolBtnClose = createToolBtn({
+  className: 'toolBtnClose',
+  faClass: 'fa fa-times'
+})
+const $toolBtnToggleCollapse = createToolBtn({
+  className: 'toolBtnToggleCollapse',
+  faClass: 'fa fa-angle-right'
+})
+const $toolBtnGitHub = createToolBtn({
+  className: 'toolBtnGitHub',
+  faClass: 'fab fa-github',
+  link: 'https://github.com/x3388638/cakeresume-html-editor'
+})
 const $editorContainer = $('<div>').addClass('editorContainer')
 
 /**
@@ -99,10 +107,13 @@ function clearBlockHighlight() {
   })
 }
 
-function createToolBtn(className, icon) {
-  return $('<div>')
+function createToolBtn({ className, faClass, link }) {
+  const $ele = link
+    ? $('<a>').attr({ href: link, target: '_blank' })
+    : $('<div>')
+  return $ele
     .addClass(`toolBtn ${className}`)
-    .html(`<i class="fa fa-${icon}"></i>`)
+    .html(`<i class="${faClass}"></i>`)
 }
 
 /**
@@ -110,7 +121,11 @@ function createToolBtn(className, icon) {
  * init
  * ==================
  */
-$tools.append($toolBtnClose).append($toolBtnToggleCollapse)
+const toolBtns = [$toolBtnClose, $toolBtnToggleCollapse, $toolBtnGitHub]
+toolBtns.forEach(($btn) => {
+  $tools.append($btn)
+})
+
 $cakeresumeHtmlEditor.append($tools).append($editorContainer)
 $body.append($cakeresumeHtmlEditor)
 
