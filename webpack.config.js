@@ -6,7 +6,7 @@ module.exports = {
   entry: ['./src/index.js', 'monaco-editor/esm/vs/editor/editor.worker.js'],
   output: {
     globalObject: 'self',
-    filename: 'bundle.js',
+    filename: 'index.user.js',
     path: __dirname
   },
   module: {
