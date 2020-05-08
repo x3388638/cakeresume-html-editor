@@ -12,6 +12,27 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.m?js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              '@babel/preset-env',
+              [
+                'minify',
+                {
+                  builtIns: false,
+                  evaluate: false,
+                  mangle: false
+                }
+              ]
+            ],
+            comments: false
+          }
+        }
+      },
+      {
         test: /\.css$/,
         use: ['style-loader', 'css-loader', 'sass-loader']
       },

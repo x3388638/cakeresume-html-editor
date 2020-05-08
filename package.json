@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --progress",
+    "build": "webpack --progress && cat meta.js bundle.js > temp && mv temp index.user.js",
     "prettier:check": "prettier --check './**/*.{js,json,css}' && echo \"✅ Prettier validated\"",
     "prettier:write": "prettier --write './**/*.{js,json,css}'",
     "lint": "eslint './**/*.js'",
@@ -13,6 +13,10 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "babel-loader": "^8.1.0",
+    "babel-preset-minify": "^0.5.1",
     "css-loader": "^3.5.3",
     "eslint": "^6.8.0",
     "file-loader": "^6.0.0",
