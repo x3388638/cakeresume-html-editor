@@ -14,7 +14,7 @@ Focus the module you want to edit, and there is a new yellow button appended on 
 ![cakeresume-html-editor-demo-4.gif](https://gist.githubusercontent.com/x3388638/82e341b43990c7851c9438dfdec43e3b/raw/f534c676647f508af48c2d9ec01fa35781cc6c75/cakeresume-html-editor-demo-4.gif)
 
 ### Auto saving
-While you coding, it will live updating your resume and saving to draft
+While coding, it will live updating your resume and saving to draft
 ![cakeresume-html-editor-demo-5.gif](https://gist.githubusercontent.com/x3388638/82e341b43990c7851c9438dfdec43e3b/raw/098b18e9e8cb4e589b3636058eceec14e8c58599/cakeresume-html-editor-demo-5.gif)
 
 ### Sync code from WYSIWYG
@@ -27,7 +27,7 @@ https://www.cakeresume.com/s--tcaFTvHV0p7VShwXSiRGcA--/cakeresume-html-editor
 <img src="https://gist.githubusercontent.com/x3388638/82e341b43990c7851c9438dfdec43e3b/raw/e4121ae03d2f85e2265c8ba6f91a97e2e672ff6c/cakeresume-html-editor-demo-1.png" alt="cakeresume-html-editor-demo-1.png" width="600" />
 
 ## Development story (Chinese only)
-WIP
+https://medium.com/@z3388638/648e160aab6a
 
 ## Disclaimer
 There is no any hack against CakeResume, just improving the officially existing HTML editor UI and function to a user friendly one.
