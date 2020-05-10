@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         cakeresume-html-editor
 // @namespace    https://2yc.tw
-// @version      0.1.3
+// @version      0.1.4
 // @description  A user friendly HTML editor to be plugged to CakeResume to easily tweak your resume layout
 // @author       Y.Y.
 // @match        https://www.cakeresume.com/resumes/*/edit
@@ -12,6 +12,6 @@
 // ==/UserScript==
 $('body').append(
   $(
-    '<script src="https://rawcdn.githack.com/x3388638/cakeresume-html-editor/2ec4db61cae2fe57d14236e07d3b7cb746718320/index.user.js"></script>'
+    '<script src="https://rawcdn.githack.com/x3388638/cakeresume-html-editor/f4a8d950f9ae3c7151287a322e5f808b63c06d09/index.user.js"></script>'
   )
 )
