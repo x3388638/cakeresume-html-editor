@@ -3,6 +3,11 @@
   "version": "0.1.2",
   "description": "A user friendly HTML editor to be plugged to CakeResume to easily tweak your resume layout",
   "main": "index.js",
+  "homepage": "https://github.com/x3388638/cakeresume-html-editor",
+  "repository": {
+    "url": "git@github.com:x3388638/cakeresume-html-editor.git",
+    "type": "git"
+  },
   "scripts": {
     "build": "webpack --progress",
     "prettier:check": "prettier --check './**/*.{js,json,css}' && echo \"✅ Prettier validated\"",
@@ -10,8 +15,8 @@
     "lint": "eslint './**/*.js'",
     "lint:fix": "eslint './**/*.js' --fix"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "YY",
+  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.9.6",
     "@babel/preset-env": "^7.9.6",
