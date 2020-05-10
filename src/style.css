@@ -2,17 +2,17 @@
  * custom element
  */
 .cakeresume-html-editor {
+  position: fixed;
+  top: 40px;
+  right: 0;
+  z-index: 2147483601;
   display: flex;
   width: 700px;
   height: calc(100vh - 40px);
-  position: fixed;
   padding-top: 5px;
   background: #1e1e1e;
-  top: 40px;
-  right: 0;
+  box-shadow: -2px 0 5px 0 #101518;
   transform: translateX(720px);
-  z-index: 2147483601;
-  box-shadow: -2px 0px 5px 0px #101518;
   transition: transform 0.5s cubic-bezier(0.2, 1, 0.3, 1) 0s;
 
   .tools {
@@ -23,16 +23,16 @@
     border-right: 1px solid #5b636a;
 
     .toolBtn {
-      width: 50px;
-      height: 50px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 24px;
+      width: 50px;
+      height: 50px;
       color: #5b636a;
+      font-size: 24px;
+      text-decoration: none;
       cursor: pointer;
       transition: all 0.2s;
-      text-decoration: none;
 
       &:hover {
         color: #c7cdd2;
@@ -66,19 +66,18 @@
 
 .toolbar-btn {
   &.btn-openEditor {
-    background: #ffd333;
     color: #232a31;
+    background: #ffd333;
 
     &:hover {
-      background: #ff8b12;
       color: #1d2228;
+      background: #ff8b12;
     }
   }
 }
 
 .ui-draggable.editorOpen {
   &::before {
-    content: '';
     position: absolute;
     top: -15px;
     right: -15px;
@@ -86,6 +85,7 @@
     left: -15px;
     border: 1px solid #ffd333;
     border-radius: 3px;
+    content: '';
   }
 }
 
