@@ -12,6 +12,6 @@
 // ==/UserScript==
 $('body').append(
   $(
-    '<script src="https://rawcdn.githack.com/x3388638/cakeresume-html-editor/f4a8d950f9ae3c7151287a322e5f808b63c06d09/index.user.js"></script>'
+    '<script src="https://rawcdn.githack.com/x3388638/cakeresume-html-editor/6d6a46e57dce0ae10d38285c8fef53f620a570ec/index.user.js"></script>'
   )
 )
