@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         cakeresume-html-editor
 // @namespace    https://2yc.tw
-// @version      0.1.4
+// @version      0.1.5
 // @description  A user friendly HTML editor to be plugged to CakeResume to easily tweak your resume layout
 // @author       Y.Y.
 // @match        https://www.cakeresume.com/resumes/*/edit
