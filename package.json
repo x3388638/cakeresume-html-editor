@@ -1,6 +1,6 @@
 {
   "name": "cakeresume-html-editor",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "A user friendly HTML editor to be plugged to CakeResume to easily tweak your resume layout",
   "main": "index.js",
   "homepage": "https://github.com/x3388638/cakeresume-html-editor",
